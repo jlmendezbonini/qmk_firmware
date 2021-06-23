@@ -71,12 +71,4 @@ led_config_t g_led_config = { {
     2, 2, 2, 2, 2, 2, 2, 2
 } };
 
-
-// #ifdef USB_LED_INDICATOR_ENABLE
-// void rgb_matrix_indicators_kb(void)
-// {
-//   md_rgb_matrix_indicators();
-// }
-// #endif // USB_LED_INDICATOR_ENABLE
-
 #endif // RGB_MATRIX_ENABLE

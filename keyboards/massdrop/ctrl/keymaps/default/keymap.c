@@ -10,24 +10,104 @@ enum ctrl_keycodes {
     MD_BOOT,               //Restart into bootloader after hold timeout
 };
 
+enum layers {
+    QWERTY,    
+    XCODE,
+    VSCODE,
+    CONFIG,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT(
-        KC_ESC,  KC_F14,  KC_F15,  LCTL(KC_UP), KC_F11,   LALT(LCMD(KC_ESC)),   DM_REC1, DM_PLY1, KC_MPRV, KC_MPLY, KC_MNXT,  KC_VOLD,   KC_VOLU,             _______,              _______,              TO(1), \
+    [QWERTY] = LAYOUT(
+        KC_ESC,  KC_F14,  KC_F15,  RGB_VAD,     RGB_VAI,  LCTL(KC_UP), KC_F11,   LALT(LCMD(KC_ESC)),   DM_REC1, DM_PLY1, KC_MPRV, KC_MPLY, KC_MNXT,            KC_VOLD,              KC_VOLU,                           TO(1), \
+        KC_GRV,  KC_1,    KC_2,    KC_3,        KC_4,     KC_5,                 KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,   KC_EQL,  KC_BSPC,     LCMD(LSFT(KC_LBRC)),  LCMD(LSFT(KC_RBRC)),                KC_PGUP, \
+        KC_TAB,  KC_Q,    KC_W,    KC_E,        KC_R,     KC_T,                 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,   KC_RBRC, KC_BSLS,     KC_DEL,               LCTL(LALT(LCMD(KC_SPC))),           KC_PGDOWN,\
+        KC_CAPS, KC_A,    KC_S,    KC_D,        KC_F,     KC_G,                 KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,   KC_ENT, \
+        KC_LSFT, KC_Z,    KC_X,    KC_C,        KC_V,     KC_B,                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,                           KC_UP, \
+        KC_LCTL, KC_LALT, KC_LCMD,                           KC_SPC,           KC_RCMD, KC_RALT, LCTL(LALT(LCMD(KC_SPC))),    KC_RCTL,                 KC_LEFT, KC_DOWN, KC_RGHT \
+    ),
+    [XCODE] = LAYOUT(
+        KC_ESC,  KC_F14,  KC_F15,  RGB_VAD,     RGB_VAI,  LCTL(KC_UP), KC_F11,   LALT(LCMD(KC_ESC)),   DM_REC1, DM_PLY1, KC_MPRV, KC_MPLY, KC_MNXT,  KC_VOLD,   KC_VOLU,            TO(2), \
         KC_GRV,  KC_1,    KC_2,    KC_3,        KC_4,     KC_5,                 KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,   KC_EQL,  KC_BSPC,    LCTL(LCMD(KC_J)),     KC_F6,                LCTL(LALT(LCMD(KC_SPC))), \
         KC_TAB,  KC_Q,    KC_W,    KC_E,        KC_R,     KC_T,                 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,   KC_RBRC, KC_BSLS,    KC_DEL,               LCMD(LSFT(KC_LBRC)),  LCMD(LSFT(KC_RBRC)), \
         KC_CAPS, KC_A,    KC_S,    KC_D,        KC_F,     KC_G,                 KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,   KC_ENT, \
-        KC_LSFT, KC_Z,    KC_X,    KC_C,        KC_V,     KC_B,                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,                              KC_UP, \
-        KC_LCTL, KC_LALT, KC_LCMD,                           KC_SPC,                        KC_RCMD, KC_RALT, KC_NO,    KC_RCTL,                 KC_LEFT, KC_DOWN, KC_RGHT \
+        KC_LSFT, KC_Z,    KC_X,    KC_C,        KC_V,     KC_B,                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,                           KC_UP, \
+        KC_LCTL, KC_LALT, KC_LCMD,                           KC_SPC,           KC_RCMD, KC_RALT, LCTL(LALT(LCMD(KC_SPC))),    KC_RCTL,                 KC_LEFT, KC_DOWN, KC_RGHT \
     ),
-    [1] = LAYOUT(
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,            KC_MUTE, _______, TO(0), \
-        _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,   KC_MPLY, KC_MSTP, KC_VOLU, \
-        _______, RGB_SPD, RGB_VAI, RGB_SPI, RGB_HUI, RGB_SAI, _______, U_T_AUTO,U_T_AGCR,_______, _______, _______, _______, _______,   KC_MPRV, KC_MNXT, KC_VOLD, \
-        _______, RGB_RMOD,RGB_VAD, RGB_MOD, RGB_HUD, RGB_SAD, _______, _______, _______, _______, _______, _______, _______, \
-        _______, RGB_TOG, _______, _______, _______, MD_BOOT, NK_TOGG, _______, _______, _______, _______, _______,                              _______, \
-        _______, _______, _______,                   _______,                            _______, _______, _______, _______,            _______, _______, _______ \
+    [VSCODE] = LAYOUT(
+        KC_ESC,  KC_F14,  KC_F15,  RGB_VAD,     RGB_VAI,  LCTL(KC_UP), KC_F11,   LALT(LCMD(KC_ESC)),   DM_REC1, DM_PLY1, KC_MPRV, KC_MPLY, KC_MNXT,  KC_VOLD,   KC_VOLU,            TO(3), \
+        KC_GRV,  KC_1,    KC_2,    KC_3,        KC_4,     KC_5,                 KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,   KC_EQL,  KC_BSPC,      KC_F12,               KC_F6,                LCTL(LALT(LCMD(KC_SPC))), \
+        KC_TAB,  KC_Q,    KC_W,    KC_E,        KC_R,     KC_T,                 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,   KC_RBRC, KC_BSLS,      KC_DEL,               LCMD(LSFT(KC_LBRC)),  LCMD(LSFT(KC_RBRC)), \
+        KC_CAPS, KC_A,    KC_S,    KC_D,        KC_F,     KC_G,                 KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,   KC_ENT, \
+        KC_LSFT, KC_Z,    KC_X,    KC_C,        KC_V,     KC_B,                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,                           KC_UP, \
+        KC_LCTL, KC_LALT, KC_LCMD,                           KC_SPC,           KC_RCMD, KC_RALT, LCTL(LALT(LCMD(KC_SPC))),    KC_RCTL,                 KC_LEFT, KC_DOWN, KC_RGHT \
+    ),
+    [CONFIG] = LAYOUT(
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                          KC_NO, KC_NO, TO(0), \
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                   KC_NO, KC_NO, KC_NO, \
+        KC_NO, RGB_SPD, RGB_VAI, RGB_SPI, RGB_HUI, RGB_SAI, KC_NO, U_T_AUTO, U_T_AGCR, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,   KC_NO, KC_NO, KC_NO, \
+        KC_NO, RGB_RMOD,RGB_VAD, RGB_MOD, RGB_HUD, RGB_SAD, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, \
+        KC_NO, RGB_TOG, KC_NO, KC_NO, KC_NO, MD_BOOT, NK_TOGG, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                                    KC_MS_U, \
+        KC_NO, KC_NO, KC_NO,                   KC_NO,                            KC_NO, KC_NO, KC_NO, KC_NO,                  KC_MS_L, KC_MS_D, KC_NO \
     ),
 };
+
+//       ESC
+//     ___0___, _______, _______, _______, ___4___, _______, _______, _______, _______, ___9__, _______, _______,  ___12__,           __13___, __14___, __15___,
+//     ___16__, _______, __18___, _______, _______, _______, _______, __23___, _______, ______, _______, __27___,  _______, _______,  ___30__, _______, __32___,
+//     __ 33__, __34___, __35___, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  ___47___, _______, _______,
+//     ___50__, __51___,___52___, _______, _______, _______, _______, _______, _______, _______, _______, _______, ___62__,
+//     ___63__, __64___, __65___, __66___, __67___, __68___, _______, ___70__, _______, _______, _______, ___74__,                              ___75___,
+//     ___76___, _______, _______,                   ___79___,                           ___80__, ___81__, __82___, _83____,            ______, ___85___, _______
+void rgb_matrix_indicators_kb(void) {
+    	if (!g_suspend_state && rgb_matrix_config.enable) {
+        switch (get_highest_layer(layer_state)) {
+            case QWERTY:
+                rgb_matrix_set_color_all(RGB_BLACK);
+                rgb_matrix_set_color(15, RGB_CYAN);
+                rgb_matrix_set_color(30, RGB_CYAN);
+                rgb_matrix_set_color(31, RGB_CYAN);
+                rgb_matrix_set_color(32, RGB_CYAN);
+                rgb_matrix_set_color(47, RGB_CYAN);
+                rgb_matrix_set_color(48, RGB_CYAN);
+                rgb_matrix_set_color(49, RGB_CYAN);
+
+                break;
+
+            case XCODE:
+                rgb_matrix_set_color_all(RGB_BLACK);
+                rgb_matrix_set_color(15, RGB_BLUE);
+                rgb_matrix_set_color(30, RGB_BLUE);
+                rgb_matrix_set_color(31, RGB_BLUE);
+                rgb_matrix_set_color(32, RGB_BLUE);
+                rgb_matrix_set_color(49, RGB_BLUE);
+                break;
+
+            case VSCODE:
+                rgb_matrix_set_color_all(RGB_BLACK);
+                rgb_matrix_set_color(15, RGB_GREEN);
+                rgb_matrix_set_color(30, RGB_GREEN);
+                rgb_matrix_set_color(31, RGB_GREEN);
+                rgb_matrix_set_color(32, RGB_GREEN);
+                rgb_matrix_set_color(47, RGB_GREEN);
+                rgb_matrix_set_color(48, RGB_GREEN);
+                rgb_matrix_set_color(49, RGB_GREEN);
+                break;
+
+            case CONFIG:
+                rgb_matrix_set_color_all(RGB_BLACK);
+                rgb_matrix_set_color(15, RGB_RED);
+                rgb_matrix_set_color(64, RGB_RED);
+                rgb_matrix_set_color(68, RGB_RED);
+                break;
+        }
+    }
+
+    #ifdef USB_LED_INDICATOR_ENABLE
+      md_rgb_matrix_indicators();
+    #endif // USB_LED_INDICATOR_ENABLE
+}
+
 
 // Runs just one time when the keyboard initializes.
 void matrix_init_user(void) {
@@ -40,34 +120,6 @@ void matrix_scan_user(void) {
 void keyboard_post_init_user(void) {
     // rgb_matrix_set_color(41, 255, 0, 0);
 }
-//       ESC                                                                                                          
-//     ___0___, _______, _______, _______, ___4___, _______, _______, _______, _______, ___9__, _______, _______,  ___12__,           _______, _______, __15___, 
-//     ___16__, _______, __18___, _______, _______, _______, _______, __23___, _______, ______, _______, __27___,  _______, _______,  ___30__, _______, __32___, 
-//     __ 33__, _______, __35___, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,  ___47___, _______, _______, 
-//     ___50__, _______,________, _______, _______, _______, _______, _______, _______, _______, _______, _______, ___62__, 
-//     ___63__, _______, _______, _______, _______, _______, _______, ___70__, _______, _______, _______, ___74__,                              ___75___, 
-//     ___76___, _______, _______,                   ___79___,                           _______, _______, _______, _______,            ______, ___85___, _______ 
-void rgb_matrix_indicators_kb(void) {
-    // 	if (!g_suspend_state && rgb_matrix_config.enable) {
-    //     switch (get_highest_layer(layer_state)) {
-    //         case 0:
-    //             rgb_matrix_set_color_all(RGB_BLACK);
-    //             rgb_matrix_set_color(30, 0xFF, 0xFF, 0xFF);
-    //             break;
-    //         case 1:
-    //             rgb_matrix_set_color_all(RGB_BLACK);
-    //             rgb_matrix_set_color(75, RGB_BLUE);
-    //             rgb_matrix_set_color(85, RGB_YELLOW);
-    //             break;
-    //     }
-    // }
-
-    #ifdef USB_LED_INDICATOR_ENABLE
-      md_rgb_matrix_indicators();
-    #endif // USB_LED_INDICATOR_ENABLE
-
-}
-
 
 #define MODS_SHIFT  (get_mods() & MOD_MASK_SHIFT)
 #define MODS_CTRL   (get_mods() & MOD_MASK_CTRL)

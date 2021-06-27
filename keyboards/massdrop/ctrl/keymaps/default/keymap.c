@@ -85,14 +85,14 @@ void rgb_matrix_indicators_kb(void) {
         switch (get_highest_layer(layer_state)) {
             case QWERTY:
                 // rgb_matrix_set_color_all(RGB_BLACK);
-                rgb_matrix_set_color(15, RGB_YELLOW);
+                rgb_matrix_set_color(15, RGB_SPRINGGREEN);
 
                 rgb_matrix_set_color(30, RGB_BLACK);
                 rgb_matrix_set_color(31, RGB_BLACK);
                 rgb_matrix_set_color(32, RGB_BLACK);
                 
-                rgb_matrix_set_color(47, RGB_YELLOW);
-                rgb_matrix_set_color(48, RGB_YELLOW);
+                rgb_matrix_set_color(47, RGB_SPRINGGREEN);
+                rgb_matrix_set_color(48, RGB_SPRINGGREEN);
                 rgb_matrix_set_color(49, RGB_BLACK);
 
                 break;
@@ -113,7 +113,7 @@ void rgb_matrix_indicators_kb(void) {
 
             case VSCODE:
                 // rgb_matrix_set_color_all(RGB_BLACK);
-                rgb_matrix_set_color(15, RGB_GREEN);
+                rgb_matrix_set_color(15, RGB_SPRINGGREEN);
 
                 rgb_matrix_set_color(30, RGB_BLACK);
                 rgb_matrix_set_color(31, RGB_BLACK);
@@ -160,7 +160,6 @@ void matrix_scan_user(void) {
 }
 
 void keyboard_post_init_user(void) {
-    // rgb_matrix_set_color(41, 255, 0, 0);
 }
 
 #define MODS_SHIFT  (get_mods() & MOD_MASK_SHIFT)

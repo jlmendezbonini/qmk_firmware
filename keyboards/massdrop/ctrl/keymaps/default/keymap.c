@@ -8,6 +8,7 @@ enum ctrl_keycodes {
     DBG_KBD,               //DEBUG Toggle Keyboard Prints
     DBG_MOU,               //DEBUG Toggle Mouse Prints
     MD_BOOT,               //Restart into bootloader after hold timeout
+    C_JL_PREFIX,           //Custom prefix for my shortcuts.
 };
 
 enum layers {
@@ -24,15 +25,10 @@ enum layers {
 #define DEFINE_CONFIG    3
 #define DEFINE_FUNCTION  4
 
-//VSCODE
-// Go Back
-// Go to definition
-
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [QWERTY] = LAYOUT(
         KC_ESC,  KC_F14,  KC_F15,  RGB_VAD,     RGB_VAI,  LCTL(KC_UP),          KC_F11,  LALT(LCMD(KC_ESC)),   DM_REC1, DM_PLY1, KC_MPRV, KC_MPLY, KC_MNXT,    KC_VOLD,              KC_VOLU,                   TO(DEFINE_XCODE), \
-        KC_GRV,  KC_1,    KC_2,    KC_3,        KC_4,     KC_5,                 KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,   KC_EQL,  KC_BSPC,     KC_NO,                KC_NO,                     KC_NO, \
+        KC_GRV,  KC_1,    KC_2,    KC_3,        KC_4,     KC_5,                 KC_6,    KC_7,    KC_8,    KC_9,    KC_0,     KC_MINS,   KC_EQL,  KC_BSPC,     C_JL_PREFIX,          KC_NO,                     KC_NO, \
         KC_TAB,  KC_Q,    KC_W,    KC_E,        KC_R,     KC_T,                 KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,     KC_LBRC,   KC_RBRC, KC_BSLS,     KC_DEL,               LCTL(LALT(LCMD(KC_SPC))),  KC_NO,\
         KC_CAPS, KC_A,    KC_S,    KC_D,        KC_F,     KC_G,                 KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN,  KC_QUOT,   KC_ENT, \
         KC_LSFT, KC_Z,    KC_X,    KC_C,        KC_V,     KC_B,                 KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT,                                     KC_UP, \
@@ -40,7 +36,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [XCODE] = LAYOUT(
         _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______,                      _______,     _______,              TO(DEFINE_VSCODE), \
-        _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______, _______,             _______,     _______,              _______, \
+        _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______, _______,             KC_NO,       _______,              _______, \
         _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______, _______,             _______,     _______,              LCTL(LCMD(KC_J)), \
         _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______, \
         _______,            _______,  _______,  _______,   _______, _______,   _______,   _______,   _______,  _______, _______,  _______,                                               _______, \
@@ -48,7 +44,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [VSCODE] = LAYOUT(
         _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______,                      _______,     _______,              TO(DEFINE_CONFIG), \
-        _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______, _______,             _______,     _______,              _______, \
+        _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______, _______,             KC_NO,       _______,              _______, \
         _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______, _______,             _______,     _______,              KC_F12, \
         _______,  _______,  _______,  _______,   _______,  _______, _______,   _______,   _______,   _______,  _______, _______,  _______, \
         _______,            _______,  _______,  _______,   _______, _______,   _______,   _______,   _______,  _______, _______,  _______,                                               _______, \
@@ -84,10 +80,9 @@ void rgb_matrix_indicators_kb(void) {
     	if (!g_suspend_state && rgb_matrix_config.enable) {
         switch (get_highest_layer(layer_state)) {
             case QWERTY:
-                // rgb_matrix_set_color_all(RGB_BLACK);
                 rgb_matrix_set_color(15, RGB_SPRINGGREEN);
 
-                rgb_matrix_set_color(30, RGB_BLACK);
+                rgb_matrix_set_color(30, RGB_SPRINGGREEN);
                 rgb_matrix_set_color(31, RGB_BLACK);
                 rgb_matrix_set_color(32, RGB_BLACK);
                 
@@ -98,7 +93,6 @@ void rgb_matrix_indicators_kb(void) {
                 break;
 
             case XCODE:
-                // rgb_matrix_set_color_all(RGB_BLACK);
                 rgb_matrix_set_color(15, RGB_BLUE);
                 
                 rgb_matrix_set_color(30, RGB_BLACK);
@@ -112,8 +106,7 @@ void rgb_matrix_indicators_kb(void) {
                 break;
 
             case VSCODE:
-                // rgb_matrix_set_color_all(RGB_BLACK);
-                rgb_matrix_set_color(15, RGB_SPRINGGREEN);
+                rgb_matrix_set_color(15, RGB_GREEN);
 
                 rgb_matrix_set_color(30, RGB_BLACK);
                 rgb_matrix_set_color(31, RGB_BLACK);
@@ -237,22 +230,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             }
             return false;
             
-        // case M_BSDEL: {
-        //     uint8_t kc = KC_BSPC;
-            
-        //     if (keyboard_report->mods & MOD_BIT(KC_LSFT)) {
-        //         kc = KC_DEL;
-        //         bsdel_mods = true;
-        //     } else {
-        //         bsdel_mods = false;
-        //     }
-
-        //     if (record->event.pressed) {
-        //         register_code (kc);
-        //     } else {
-        //         unregister_code (kc);
-        //     }
-        // }
+        case C_JL_PREFIX: 
+            if (record->event.pressed) {
+                // when keycode is pressed
+                SEND_STRING("jl-");
+            } else {
+                // when keycode is released
+            }
+            return true; // indicate to the caller that the key press we just processed should continue to be processed as normal (as we didn't replace or alter the functionality)
 
         default:
             return true; //Process all other keycodes normally
